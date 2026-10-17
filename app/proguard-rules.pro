@@ -48,3 +48,8 @@
 -keep class com.newoether.agora.screenshot.ScreenshotFixture { *; }# Ktor server: JVM-only debug detection (DevelopmentMode), absent on Android.
 -dontwarn java.lang.management.ManagementFactory
 -dontwarn java.lang.management.RuntimeMXBean
+
+# Vosk uses JNA JNI: native code looks up Pointer.peer and other members by exact names.
+# R8 obfuscation breaks JNA's native field lookups without these rules.
+-keep class com.sun.jna.** { *; }
+-keep class org.vosk.** { *; }
