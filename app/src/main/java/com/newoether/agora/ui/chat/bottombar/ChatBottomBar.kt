@@ -624,6 +624,12 @@ internal fun ChatBottomBar(
                     }
                 }
             }
+            OfflineMic(enabled = !submission.isFrozen) { recognized ->
+                textFieldState.edit {
+                    val current = asCharSequence().toString()
+                    append(if (current.isNotBlank() && !current.endsWith(" ")) " $recognized" else recognized)
+                }
+            }
             ComposerSendButton(
                 textFieldState = textFieldState,
                 ownerId = composerOwnerId,
