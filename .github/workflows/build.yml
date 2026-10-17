@@ -55,7 +55,7 @@ jobs:
           retention-days: 14
 
   build:
-    needs: test
+    # Run tests and APK compilation concurrently to reduce time to artifact.
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
